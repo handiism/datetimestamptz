@@ -2,11 +2,11 @@
 
 ## Go PostgresQL `jackc/pg`
 
-| Database Type | Availability | Programming Type   |
+| Database Type | Availability | Program Type       |
 | ------------- | ------------ | ------------------ |
 | Time          | ✅           | pgtype.Time        |
-| Timetz        | ❔           |                    |
+| Timetz        | ❌           |                    |
 | Timestamp     | ✅           | pgtype.Timestamp   |
 | Timestamptz   | ✅           | pgtype.Timestamptz |
 | Date          | ✅           | pgtype.Date        |
-| Interval      | ❔           |                    |
+| Interval      | ✅           | pgtype.Interval    |

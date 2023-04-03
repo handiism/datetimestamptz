@@ -28,28 +28,31 @@ func main() {
 	defer conn.Close(context.Background())
 
 	now := time.Now()
+	interval := pgtype.Interval{Months: 10, Microseconds: 10, Days: 10, Valid: true}
 
 	var id int
 	var mytime pgtype.Time
 	var mytimestamp pgtype.Timestamp
 	var mytimestamptz pgtype.Timestamptz
 	var mydate pgtype.Date
+	var myinterval pgtype.Interval
 
 	err = conn.QueryRow(context.Background(),
 		`INSERT INTO datetimestamptz(
 			time,
-			timetz,
 			timestamp,
 			timestamptz,
-			date
+			date,
+			interval
 		 ) VALUES($1,$2,$3,$4,$5)
 		RETURNING
 			id,
 			time,
 			timestamp,
 			timestamptz,
-			date`,
-		now, now, now, now, now).Scan(&id, &mytime, &mytimestamp, &mytimestamptz, &mydate)
+			date,
+			interval`,
+		now, now, now, now, interval).Scan(&id, &mytime, &mytimestamp, &mytimestamptz, &mydate, &myinterval)
 
 	if err != nil {
 		fmt.Println(err.Error())
@@ -61,4 +64,5 @@ func main() {
 	fmt.Println(mytimestamp)
 	fmt.Println(mytimestamptz)
 	fmt.Println(mydate)
+	fmt.Println(myinterval)
 }
