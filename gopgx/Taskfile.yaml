@@ -1,0 +1,16 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  pg:
+    cmds:
+      - docker run -d --name pg -v pg:/var/lib/postgresql/data -p 5432:5432 -e TZ=Asia/Jakarta -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres postgres:15-alpine
