@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model datetimestamptz {
+  id          Int                      @id @default(autoincrement())
+  time        DateTime?                @db.Time(6)
+  timetz      DateTime?                @db.Timetz(6)
+  timestamp   DateTime?                @db.Timestamp(6)
+  timestamptz DateTime?                @db.Timestamptz(6)
+  date        DateTime?                @db.Date
+  interval    Unsupported("interval")?
+}
